@@ -1,9 +1,0 @@
-.separator |
-.import Item.dat Item
-update Item set Buy_Price = null where Buy_Price = 'NULL';
-update Item set Description = null where Description = 'NULL';
-.import Category.dat Category
-.import User.dat AuctionUser
-update AuctionUser set Location = null where Location = 'NULL';
-update AuctionUser set Country = null where Country = 'NULL';
-.import Bid.dat Bid

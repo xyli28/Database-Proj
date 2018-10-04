@@ -29,13 +29,13 @@ The aforementioned directory contains:
 1. As a small data set for initial experimentation and debugging, we suggest you use just one file:
 `ebay_data/items-0.json`. It contains 500 auctions, comprising about 900KB of plain-text data.
 
-2. Your AuctionBase system also must work on the full data set, which consists of all 40 files of the form:
+2. Your `AuctionBase` system also must work on the full data set, which consists of all 40 files of the form:
 `ebay_data/items-n.json for n = 0, . . . , 39`. There are a total of about 20,000 auctions, comprising
 about 38MB of plain-text data.
 
 Your second task is to examine the schema and the JSON files to completely understand the data you
-will be starting with. You will translate this data into relations and load it into your AuctionBase database.
-Read the auction data JSON schema file ebay_data/items_schema.txt to familiarize yourself with the
+will be starting with. You will translate this data into relations and load it into your `AuctionBase` database.
+Read the auction data JSON schema file `ebay_data/items_schema.txt` to familiarize yourself with the
 schema of the data set. Note that the ItemID attribute is unique and involved in only one auction, while the
 Name attribute is not unique.
 
@@ -63,8 +63,8 @@ as a starting point to help determine your schema, rather than the other way aro
 include the actual ER diagram in the `design.pdf` file.
 
 While designing your relational schema, you may realize that two fields from the JSON files are technically
-not necessary to have in your schema for it to represent the same information: Currently and
-Number_of_Bids. For example, the Number_of_Bids can be obtained by simply running a query to calculate
+not necessary to have in your schema for it to represent the same information: `Currently` and
+`Number_of_Bids`. For example, the `Number_of_Bids` can be obtained by simply running a query to calculate
 the number of bids on a particular item. However, for the purposes of this project, **we ask that you
 have both of these attributes somewhere in your schema**. For websites with large databases and many
 users, running a query to calculate an aggregation every time it needs to be viewed can be costly, so storing
@@ -85,7 +85,7 @@ SQLite bulk-loading files according to the relational schema you designed in Tas
 helper functions or modify the files as you see fit.
 
 You should start by copying the file `skeleton_parser.py` to the local directory where you downloaded
-ebay_data. We also encourage you to rename the file to differentiate between the starter code and
+`ebay_data`. We also encourage you to rename the file to differentiate between the starter code and
 your own implementation. The following command will call the skeleton parser on the small data set:
 
 `python skeleton_parser.py ebay_data/items-0.json`
@@ -104,8 +104,8 @@ extension for the SQLite load files you generate.
 ### Dollar and date/time values.
 
 Dollar value amounts in the auction data are expressed as $X,XXX.XX. To
-simplify comparisons between dollar values, we have provided a function transformDollar(string)
-in skeleton_parser.py, in order to reformat these strings into values that SQLite can interpret as floating
+simplify comparisons between dollar values, we have provided a function `transformDollar(string)`
+in `skeleton_parser.py`, in order to reformat these strings into values that SQLite can interpret as floating
 point numbers. Similarly, date/time values in the auction data are expressed like Mar-25-01 10:25:57.
 SQLite has support for date/time strings, but only when expressed in the ISO format, e.g. 2001-03-25
 10:25:57. We have provided a function `transformDttm(string)` in `skeleton_parser.py` in order to

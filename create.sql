@@ -3,7 +3,7 @@ drop table if exists Category;
 drop table if exists AuctionUser;
 drop table if exists Bid;
 
-CREATE TABLE Item(
+CREATE TABLE Items(
     ItemID INTEGER PRIMARY KEY,
     Name TEXT,
     Currently REAL,
