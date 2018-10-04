@@ -1,7 +1,7 @@
 .separator |
 .import Item.dat Items
-update Item set Buy_Price = null where Buy_Price = 'NULL';
-update Item set Description = null where Description = 'NULL';
+update Items set Buy_Price = null where Buy_Price = 'NULL';
+update Items set Description = null where Description = 'NULL';
 .import Category.dat Category
 .import User.dat AuctionUser
 update AuctionUser set Location = null where Location = 'NULL';
