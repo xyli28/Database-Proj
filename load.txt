@@ -1,5 +1,5 @@
 .separator |
-.import Item.dat Items
+.import Item.dat Item
 update Item set Buy_Price = null where Buy_Price = 'NULL';
 update Item set Description = null where Description = 'NULL';
 .import Category.dat Category

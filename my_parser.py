@@ -69,6 +69,13 @@ def transformDollar(money):
     return sub(r'[^\d.]', '', money)
 
 """
+Surround all strings with double quotes
+"""
+
+def addQuote(s):
+    return '"' + sub(r'"', '', s) + '"'
+
+"""
 Parses a single json file. Currently, there's a loop that iterates over each
 item in the data set. Your job is to extend this functionality to create all
 of the necessary SQL tables for your database.
@@ -97,7 +104,7 @@ def parseJson(json_file):
                     value = transformDttm(value)
                 if key == 'Seller' and value != 'NULL':
                     value = value['UserID']
-                values.append(value)
+                values.append(addQuote(value))
             with open("Item.dat",'a+') as item_file:
                 item_file.write(columnSeparator.join(values)+"\n")
 
@@ -117,30 +124,30 @@ def parseJson(json_file):
                             bidder = bid['Bidder']
                             for key in subkeys:
                                 if key in bidder and bidder[key]:
-                                    bidder_values.append(bidder[key])
+                                    bidder_values.append(addQuote(bidder[key]))
                                 else:
-                                    bidder_values.append('NULL')
+                                    bidder_values.append(addQuote('NULL'))
                             user_file.write(columnSeparator.join(bidder_values)
                                             +"\n")
                 seller_values = []
                 if 'Seller' in item and item['Seller']:
                     seller = item['Seller']
                     if 'UserID' in seller and seller['UserID']:
-                        seller_values.append(seller['UserID'])
+                        seller_values.append(addQuote(seller['UserID']))
                     else:
-                        seller_values.append('NULL')
+                        seller_values.append(addQuote('NULL'))
                     if 'Rating' in seller and seller['Rating']:
-                        seller_values.append(seller['Rating'])
+                        seller_values.append(addQuote(seller['Rating']))
                     else:
-                        seller_values.append('NULL')
+                        seller_values.append(addQuote('NULL'))
                     if 'Location' in item and item['Location']:
-                        seller_values.append(item['Location'])
+                        seller_values.append(addQuote(item['Location']))
                     else:
-                        seller_values.append('NULL')
+                        seller_values.append(addQuote('NULL'))
                     if 'Country' in item and item['Country']:
-                        seller_values.append(item['Country'])
+                        seller_values.append(addQuote(item['Country']))
                     else:
-                        seller_values.append('NULL')
+                        seller_values.append(addQuote('NULL'))
                     user_file.write(columnSeparator.join(seller_values)+"\n")
 
             with open("Bid.dat",'a+') as bid_file:
@@ -149,25 +156,25 @@ def parseJson(json_file):
                         bid = bid['Bid']
                         bid_values = []
                         if 'ItemID' in item and item['ItemID']:
-                            bid_values.append(item['ItemID'])
+                            bid_values.append(addQuote(item['ItemID']))
                         else:
-                            bid_values.append('NULL')
+                            bid_values.append(addQuote('NULL'))
                         if 'Bidder' in bid and bid['Bidder']:
                             bidder = bid['Bidder']
                             if 'UserID' in bidder and bidder['UserID']:
-                                bid_values.append(bidder['UserID'])
+                                bid_values.append(addQuote(bidder['UserID']))
                             else: 
-                                bid_values.append('NULL')
+                                bid_values.append(addQuote('NULL'))
                         else:
-                            bid_values.append('NULL')
+                            bid_values.append(addQuote('NULL'))
                         if 'Time' in bid and bid['Time']:
-                            bid_values.append(transformDttm(bid['Time']))
+                            bid_values.append(addQuote(transformDttm(bid['Time'])))
                         else:
-                            bid_values.append('NULL')
+                            bid_values.append(addQuote('NULL'))
                         if 'Amount' in bid and bid['Amount']:
-                            bid_values.append(transformDollar(bid['Amount']))
+                            bid_values.append(addQuote(transformDollar(bid['Amount'])))
                         else:
-                            bid_values.append('NULL')
+                            bid_values.append(addQuote('NULL'))
                         bid_file.write(columnSeparator.join(bid_values)+"\n")
             pass
 
