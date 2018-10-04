@@ -90,7 +90,8 @@ def parseJson(json_file):
                     value = item[key]
                 else: 
                     value = 'NULL'
-                if key == 'Currently' or key == 'First_Bid' and value != 'NULL':
+                if (key == 'Currently' or key == 'First_Bid' or 
+                    key == 'Buy_Price' and value != 'NULL'):
                     value = transformDollar(value)
                 if key == 'Started' or key == 'Ends' and value != 'NULL':
                     value = transformDttm(value)
