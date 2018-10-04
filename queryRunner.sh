@@ -2,17 +2,19 @@
 
 echo
 echo ===========================================
-echo             Parsing Json Files            
+echo             Parsing Json Files
 echo ===========================================
 sh ./runParser.sh
 
 echo
 echo ===========================================
-echo             Load Data to AuctionBase.db 
+echo             Load Data to AuctionBase.db
 echo ===========================================
 # Load data into database
 sqlite3 AuctionBase.db < create.sql
 sqlite3 AuctionBase.db < load.txt
+
+echo Finished Loading
 
 echo
 echo ===========================================
@@ -24,7 +26,12 @@ do
     sqlite3 AuctionBase.db < $query >> ./output.txt
 done
 
-diff ./output.txt ./correct_output.txt
+if diff ./output.txt ./correct_output.txt; then
+    echo "output mathes provided one"
+else
+    echo "output does not match provided one"
+fi
+
 
 echo
 echo ===========================================
