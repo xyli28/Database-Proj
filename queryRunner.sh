@@ -1,10 +1,12 @@
 #!/bin/bash
 
+echo
 echo ===========================================
 echo             Parsing Json Files            
 echo ===========================================
 sh ./runParser.sh
 
+echo
 echo ===========================================
 echo             Load Data to AuctionBase.db 
 echo ===========================================
@@ -12,6 +14,7 @@ echo ===========================================
 sqlite3 AuctionBase.db < create.sql
 sqlite3 AuctionBase.db < load.txt
 
+echo
 echo ===========================================
 echo              Run Queries
 echo ===========================================
@@ -21,8 +24,9 @@ do
     sqlite3 AuctionBase.db < $query >> ./output.txt
 done
 
-cat ./output.txt
+diff ./output.txt ./correct_output.txt
 
+echo
 echo ===========================================
 echo              Clean Up
 echo ===========================================
@@ -30,3 +34,5 @@ echo ===========================================
 rm *.dat
 rm AuctionBase.db
 rm ./output.txt
+
+echo "All finished"
